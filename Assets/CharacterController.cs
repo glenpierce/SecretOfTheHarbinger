@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
-    private string _moveXAxisName;
-    private string _moveYAxisName;
-    private string _lookXAxisName;
-    private string _lookYAxisName;
-    private string _aButtonAxisName;
-    private string _bButtonAxisName;
-    private string _dashButtonAxisName;
+    private string _moveXAxisName = "Horizontal";
+    private string _moveYAxisName = "Vertical";
+    private string _lookXAxisName = "Mouse X";
+    private string _lookYAxisName = "Mouse Y";
+    private string _aButtonAxisName = "Fire1";
+    private string _bButtonAxisName = "Fire2";
+    private string _dashButtonAxisName = "Fire3";
     private int _playerNumber;
     private Player _player;
 
@@ -117,15 +117,15 @@ public class CharacterController : MonoBehaviour {
     }
 
     private void UpdateInput() {
-        _moveX = getMoveX(); //Input.GetAxis(_moveXAxisName);
-        _moveY = getMoveY(); //Input.GetAxis(_moveYAxisName);
+        _moveX = Input.GetAxis(_moveXAxisName);
+        _moveY = Input.GetAxis(_moveYAxisName);
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
-        _lookX = mouseDelta.x; // Input.mousePosition.x; //Input.GetAxis(_lookXAxisName);
-        _lookY = mouseDelta.y; //Input.mousePosition.y; //Input.GetAxis(_lookYAxisName);
-        _aButton = 0; //Input.GetAxis(_aButtonAxisName);
-        _bButton = 0; //Input.GetAxis(_bButtonAxisName);
-        _dashButtonInputValue = 0; //Input.GetAxis(_dashButtonAxisName);
+        _lookX = Input.GetAxis(_lookXAxisName);
+        _lookY = Input.GetAxis(_lookYAxisName);
+        _aButton = Input.GetAxis(_aButtonAxisName);
+        _bButton = Input.GetAxis(_bButtonAxisName);
+        _dashButtonInputValue = Input.GetAxis(_dashButtonAxisName);
     }
 
     private int getMoveX() {
