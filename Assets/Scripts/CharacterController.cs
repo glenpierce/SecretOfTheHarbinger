@@ -42,7 +42,7 @@ public class CharacterController : MonoBehaviour {
     private Animator _animator;
 
     public void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
         myRigidBody = GetComponentInParent<Rigidbody>();
         myRigidBody.useGravity = true;
         _player = gameObject.GetComponent<Player>();
