@@ -117,8 +117,8 @@ public class CharacterController : MonoBehaviour {
     }
 
     private void UpdateInput() {
-        _moveX = Input.GetAxis(_moveXAxisName);
-        _moveY = Input.GetAxis(_moveYAxisName);
+        _moveX = Input.GetAxis(_moveXAxisName) + getMoveX();
+        _moveY = Input.GetAxis(_moveYAxisName) + getMoveY();
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
         _lookX = Input.GetAxis(_lookXAxisName);
