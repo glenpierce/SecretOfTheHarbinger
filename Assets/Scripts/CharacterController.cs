@@ -123,15 +123,15 @@ public class CharacterController : MonoBehaviour {
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
         _lookX = Input.GetAxis(_lookXAxisName);
         _lookY = Input.GetAxis(_lookYAxisName);
-        _aButton = Input.GetAxis(_aButtonAxisName);
+        _aButton = Input.GetAxis(_aButtonAxisName) + getJump();
         _bButton = Input.GetAxis(_bButtonAxisName);
         _dashButtonInputValue = Input.GetAxis(_dashButtonAxisName);
     }
 
     private int getMoveX() {
-        if(Input.GetKey(KeyCode.D)) {
+        if(Input.GetKey(KeyCode.RightArrow)) {
             return 1;
-        } else if(Input.GetKey(KeyCode.A)) {
+        } else if(Input.GetKey(KeyCode.LeftArrow)) {
             return -1;
         } else {
             return 0;
@@ -139,10 +139,18 @@ public class CharacterController : MonoBehaviour {
     }
 
     private int getMoveY() {
-        if(Input.GetKey(KeyCode.W)) {
+        if(Input.GetKey(KeyCode.UpArrow)) {
             return 1;
-        } else if(Input.GetKey(KeyCode.S)) {
+        } else if(Input.GetKey(KeyCode.DownArrow)) {
             return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    private int getJump() {
+        if(Input.GetKey(KeyCode.Space)) {
+            return 1;
         } else {
             return 0;
         }

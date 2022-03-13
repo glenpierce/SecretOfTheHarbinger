@@ -63,6 +63,7 @@ public class BuildScript : MonoBehaviour {
 
     private void ReleaseIfClicked() {
         if (Input.GetMouseButtonDown(0)) {
+            currentPlaceableObject.AddComponent<BoxCollider>();
             currentPlaceableObject = null;
         }
     }
