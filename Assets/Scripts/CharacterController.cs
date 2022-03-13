@@ -129,9 +129,9 @@ public class CharacterController : MonoBehaviour {
     }
 
     private int getMoveX() {
-        if(Input.GetKey(KeyCode.RightArrow)) {
+        if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
             return 1;
-        } else if(Input.GetKey(KeyCode.LeftArrow)) {
+        } else if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
             return -1;
         } else {
             return 0;
@@ -139,9 +139,9 @@ public class CharacterController : MonoBehaviour {
     }
 
     private int getMoveY() {
-        if(Input.GetKey(KeyCode.UpArrow)) {
+        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
             return 1;
-        } else if(Input.GetKey(KeyCode.DownArrow)) {
+        } else if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
             return -1;
         } else {
             return 0;
