@@ -56,9 +56,9 @@ public class BuildScript : MonoBehaviour {
     }
 
     private void RotateFromMouseWheel() {
-        Debug.Log(Input.mouseScrollDelta);
+        Debug.Log(Input.mouseScrollDelta.y);
         mouseWheelRotation = Input.mouseScrollDelta.y;
-        currentPlaceableObject.transform.Rotate(Vector3.up, mouseWheelRotation * 10f);
+        currentPlaceableObject.transform.Rotate(Vector3.up, currentPlaceableObject.transform.rotation.y + mouseWheelRotation * 10f);
     }
 
     private void ReleaseIfClicked() {
