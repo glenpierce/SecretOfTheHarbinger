@@ -35,14 +35,14 @@ public class CharacterController : MonoBehaviour {
     public static readonly int DashFuelReplenishRate = 1;
     public static readonly float InkIntervalSeconds = 0.25f;
 
-    public Vector2 sensitivity = new Vector2(2, 2);
+    public Vector2 sensitivity = new Vector2(4, 4);
     public Vector2 smoothing = new Vector2(3, 3);
 
     Rigidbody myRigidBody;
     private Animator _animator;
 
     public void Start() {
-        // Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         myRigidBody = GetComponentInParent<Rigidbody>();
         myRigidBody.useGravity = true;
         _player = gameObject.GetComponent<Player>();
@@ -74,7 +74,7 @@ public class CharacterController : MonoBehaviour {
         _isSitting = myRigidBody.velocity.magnitude < 0.1f;
 
         if(_animator != null) {
-            _animator.SetBool("Sit_b", _isSitting);
+            // _animator.SetBool("Sit_b", _isSitting);
             _animator.SetFloat("Speed_f", movementVector.magnitude);
             // _animator.SetBool("IsDashing", _isDashing);
         }
@@ -83,9 +83,6 @@ public class CharacterController : MonoBehaviour {
         _rotationY = _rotationY + (_lookX * _player.turnSpeed);
 
         transform.localEulerAngles = new Vector3(_rotationX, _rotationY);
-
-        //Debug.Log(myRigidBody.velocity);
-        //Debug.Log(myRigidBody.velocity.magnitude);
         
 
         HandleDash();
@@ -121,8 +118,8 @@ public class CharacterController : MonoBehaviour {
         _moveY = Input.GetAxis(_moveYAxisName) + getMoveY();
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
-        _lookX = Input.GetAxis(_lookXAxisName);
-        _lookY = Input.GetAxis(_lookYAxisName);
+        _lookX = mouseDelta.x;
+        // _lookY = Input.GetAxis(_lookYAxisName);
         _aButton = Input.GetAxis(_aButtonAxisName) + getJump();
         _bButton = Input.GetAxis(_bButtonAxisName);
         _dashButtonInputValue = Input.GetAxis(_dashButtonAxisName);

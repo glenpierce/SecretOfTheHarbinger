@@ -63,3 +63,6 @@ crashlytics-build.properties
 
 # MacOS
 .DS_Store
+
+/Assets/PolygonFantasyCharacters/
+/Assets/PolygonFantasyCharacters.meta
