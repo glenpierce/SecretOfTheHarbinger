@@ -35,12 +35,12 @@ public class giant : MonoBehaviour {
     public void FixedUpdate() {
 
         if(patrolPoints.Length != 0) {
-            if(patrolPoints[nextPatrolPointIndex].transform.position == this.transform.position) {
+            if(patrolPoints[nextPatrolPointIndex].transform.position == this.transform.position) { // todo add epsilon to this.
                 nextPatrolPointIndex ++;
             }
         }
         
-        planMovement();
+        // planMovement();
 
         var xMovement = _moveX;
         var zMovement = _moveY;

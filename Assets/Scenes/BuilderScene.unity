@@ -283,6 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddba540132b16924291625b17679235c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationY: 0
+  _rotationX: 0
 --- !u!1 &508776658 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5838145076957289006, guid: 4944eeadb1eb81a49aec5cc03522718a,
@@ -606,8 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9bdd9a04b1d5b479abcca9b96337ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 50
-  drag: 1
+  weight: 30
+  drag: 5
   speed: 1000
   normalSpeed: 1000
   dashSpeed: 9000

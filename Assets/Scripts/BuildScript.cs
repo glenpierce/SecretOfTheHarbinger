@@ -15,6 +15,7 @@ public class BuildScript : MonoBehaviour {
         HandleNewObjectHotkey();
 
         if (currentPlaceableObject != null) {
+            Cursor.lockState = CursorLockMode.Confined;
             MoveCurrentObjectToMouse();
             RotateFromMouseWheel();
             ReleaseIfClicked();
@@ -65,6 +66,7 @@ public class BuildScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             currentPlaceableObject.AddComponent<MeshCollider>();
             currentPlaceableObject = null;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
