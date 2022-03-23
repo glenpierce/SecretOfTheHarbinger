@@ -52,7 +52,7 @@ public class giant : MonoBehaviour {
 
         if(_animator != null) {
             // _animator.SetBool("Sit_b", _isSitting);
-            _animator.SetFloat("Speed_f", movementVector.magnitude);
+            // _animator.SetFloat("Speed_f", movementVector.magnitude);
             // _animator.SetBool("IsDashing", _isDashing);
         }
 

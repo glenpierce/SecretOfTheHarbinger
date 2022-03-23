@@ -75,7 +75,9 @@ public class CharacterController : MonoBehaviour {
 
         if(_animator != null) {
             // _animator.SetBool("Sit_b", _isSitting);
-            _animator.SetFloat("Speed_f", movementVector.magnitude);
+            _animator.SetFloat("Speed_z", movementVector.z);
+            // Debug.Log(_animator.GetFloat("Speed_z"));
+            _animator.SetFloat("Speed_x", movementVector.x);
             // _animator.SetBool("IsDashing", _isDashing);
         }
 
