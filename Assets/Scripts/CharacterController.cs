@@ -35,11 +35,11 @@ public class CharacterController : MonoBehaviour {
     public static readonly int DashFuelReplenishRate = 1;
     public static readonly float InkIntervalSeconds = 0.25f;
 
-    public Vector2 sensitivity = new Vector2(4, 4);
-    public Vector2 smoothing = new Vector2(3, 3);
+    public Vector2 sensitivity = new Vector2(12, 12);
 
     Rigidbody myRigidBody;
     private Animator _animator;
+    private bool isGrounded = false;
 
     public void Start() {
         Cursor.lockState = CursorLockMode.Locked;
@@ -67,11 +67,11 @@ public class CharacterController : MonoBehaviour {
 
         var xMovement = _moveX;
         var zMovement = _moveY;
-        var yMovement = (_aButton) - (_bButton);
+        var yMovement = getJump();
         var movementVector = new Vector3(xMovement, yMovement, zMovement) * _player.speed * 5;
         myRigidBody.AddRelativeForce(movementVector);
 
-        _isSitting = myRigidBody.velocity.magnitude < 0.1f;
+        // _isSitting = myRigidBody.velocity.magnitude < 0.1f;
 
         if(_animator != null) {
             // _animator.SetBool("Sit_b", _isSitting);
@@ -87,7 +87,7 @@ public class CharacterController : MonoBehaviour {
         transform.localEulerAngles = new Vector3(_rotationX, _rotationY);
         
 
-        HandleDash();
+        // HandleDash();
     }
 
     private void HandleDash() { 
@@ -118,12 +118,11 @@ public class CharacterController : MonoBehaviour {
     private void UpdateInput() {
         _moveX = Input.GetAxis(_moveXAxisName) + getMoveX();
         _moveY = Input.GetAxis(_moveYAxisName) + getMoveY();
-        var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
+        var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), 0);
+        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x, 0));
         _lookX = mouseDelta.x;
         // _lookY = Input.GetAxis(_lookYAxisName);
-        _aButton = Input.GetAxis(_aButtonAxisName) + getJump();
-        _bButton = Input.GetAxis(_bButtonAxisName);
+        // _bButton = Input.GetAxis(_bButtonAxisName);
         _dashButtonInputValue = Input.GetAxis(_dashButtonAxisName);
     }
 
@@ -148,10 +147,22 @@ public class CharacterController : MonoBehaviour {
     }
 
     private int getJump() {
-        if(Input.GetKey(KeyCode.Space)) {
+        if(Input.GetKey(KeyCode.Space) && isGrounded) {
             return 1;
         } else {
             return 0;
         }
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        // if (collision.gameObject.CompareTag("Ground")) {
+            isGrounded = true;
+        // }
+    }
+
+    void OnCollisionExit(Collision collision) {
+    // if (collision.gameObject.CompareTag("Ground")) {
+        isGrounded = false;
+    // }
     }
 }

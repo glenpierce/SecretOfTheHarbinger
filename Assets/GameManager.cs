@@ -14,11 +14,11 @@ public class GameManager : MonoBehaviour {
     private float maxHeight = 2;
     private float[,] heights = new float[100,100];
     private float sparcity = 0.4f;
-    // private int x;
-    // private int y;
 
     [SerializeField]
     private GameObject[] placeableObjectPrefabs;
+    [SerializeField]
+    private GameObject[] groundObjects;
 
     async void Start() {
         for(int i = minX; i < maxX; i++) {
@@ -37,6 +37,13 @@ public class GameManager : MonoBehaviour {
                         currentPlaceableObject.transform.position = new Vector3(randX, 0, randY);
                     }
                 }
+            }
+        }
+
+        for(int i = -90; i < 90; i++) {
+            for(int j = -90; j < 90; j++) {
+                GameObject currentGroundObject = Instantiate(groundObjects[0]);
+                currentGroundObject.transform.position = new Vector3(i * 10 + 5, -10, j * 10 + 5);
             }
         }
 

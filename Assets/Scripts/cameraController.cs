@@ -16,8 +16,8 @@ public class cameraController : MonoBehaviour {
     private Vector2 sensitivity = new Vector2(.5f, .5f);
 
     void Update() {
-        var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x, sensitivity.y));
+        var mouseDelta = new Vector2(0, -Input.GetAxisRaw("Mouse Y"));
+        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(0, sensitivity.y));
         _lookY = mouseDelta.y;
 
         var newRotation = _rotationY + _lookY;
